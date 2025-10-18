@@ -1,0 +1,210 @@
+D:\github\tree-species-classification\.venv\Scripts\python.exe D:\github\tree-species-classification\src\Classification_methods\Indirect_Methods\Multi-view_CNN_pretrained_fine_tuning\Data_fusion.py 
+Loading dataset from D:\github\dataverse_files...
+Dataset loaded with 691 samples
+Split dataset into 553 training and 138 validation samples
+Using device: cuda
+
+DEBUG: Model Structure:
+cnn_extractor.base_model.conv1.weight: torch.Size([64, 1, 7, 7]), requires_grad=True
+cnn_extractor.base_model.bn1.weight: torch.Size([64]), requires_grad=True
+cnn_extractor.base_model.bn1.bias: torch.Size([64]), requires_grad=True
+cnn_extractor.base_model.layer1.0.conv1.weight: torch.Size([64, 64, 1, 1]), requires_grad=True
+cnn_extractor.base_model.layer1.0.bn1.weight: torch.Size([64]), requires_grad=True
+cnn_extractor.base_model.layer1.0.bn1.bias: torch.Size([64]), requires_grad=True
+cnn_extractor.base_model.layer1.0.conv2.weight: torch.Size([64, 64, 3, 3]), requires_grad=True
+cnn_extractor.base_model.layer1.0.bn2.weight: torch.Size([64]), requires_grad=True
+cnn_extractor.base_model.layer1.0.bn2.bias: torch.Size([64]), requires_grad=True
+cnn_extractor.base_model.layer1.0.conv3.weight: torch.Size([256, 64, 1, 1]), requires_grad=True
+cnn_extractor.base_model.layer1.0.bn3.weight: torch.Size([256]), requires_grad=True
+cnn_extractor.base_model.layer1.0.bn3.bias: torch.Size([256]), requires_grad=True
+cnn_extractor.base_model.layer1.0.downsample.0.weight: torch.Size([256, 64, 1, 1]), requires_grad=True
+cnn_extractor.base_model.layer1.0.downsample.1.weight: torch.Size([256]), requires_grad=True
+cnn_extractor.base_model.layer1.0.downsample.1.bias: torch.Size([256]), requires_grad=True
+cnn_extractor.base_model.layer1.1.conv1.weight: torch.Size([64, 256, 1, 1]), requires_grad=True
+cnn_extractor.base_model.layer1.1.bn1.weight: torch.Size([64]), requires_grad=True
+cnn_extractor.base_model.layer1.1.bn1.bias: torch.Size([64]), requires_grad=True
+cnn_extractor.base_model.layer1.1.conv2.weight: torch.Size([64, 64, 3, 3]), requires_grad=True
+cnn_extractor.base_model.layer1.1.bn2.weight: torch.Size([64]), requires_grad=True
+cnn_extractor.base_model.layer1.1.bn2.bias: torch.Size([64]), requires_grad=True
+cnn_extractor.base_model.layer1.1.conv3.weight: torch.Size([256, 64, 1, 1]), requires_grad=True
+cnn_extractor.base_model.layer1.1.bn3.weight: torch.Size([256]), requires_grad=True
+cnn_extractor.base_model.layer1.1.bn3.bias: torch.Size([256]), requires_grad=True
+cnn_extractor.base_model.layer1.2.conv1.weight: torch.Size([64, 256, 1, 1]), requires_grad=True
+cnn_extractor.base_model.layer1.2.bn1.weight: torch.Size([64]), requires_grad=True
+cnn_extractor.base_model.layer1.2.bn1.bias: torch.Size([64]), requires_grad=True
+cnn_extractor.base_model.layer1.2.conv2.weight: torch.Size([64, 64, 3, 3]), requires_grad=True
+cnn_extractor.base_model.layer1.2.bn2.weight: torch.Size([64]), requires_grad=True
+cnn_extractor.base_model.layer1.2.bn2.bias: torch.Size([64]), requires_grad=True
+cnn_extractor.base_model.layer1.2.conv3.weight: torch.Size([256, 64, 1, 1]), requires_grad=True
+cnn_extractor.base_model.layer1.2.bn3.weight: torch.Size([256]), requires_grad=True
+cnn_extractor.base_model.layer1.2.bn3.bias: torch.Size([256]), requires_grad=True
+cnn_extractor.base_model.layer2.0.conv1.weight: torch.Size([128, 256, 1, 1]), requires_grad=True
+cnn_extractor.base_model.layer2.0.bn1.weight: torch.Size([128]), requires_grad=True
+cnn_extractor.base_model.layer2.0.bn1.bias: torch.Size([128]), requires_grad=True
+cnn_extractor.base_model.layer2.0.conv2.weight: torch.Size([128, 128, 3, 3]), requires_grad=True
+cnn_extractor.base_model.layer2.0.bn2.weight: torch.Size([128]), requires_grad=True
+cnn_extractor.base_model.layer2.0.bn2.bias: torch.Size([128]), requires_grad=True
+cnn_extractor.base_model.layer2.0.conv3.weight: torch.Size([512, 128, 1, 1]), requires_grad=True
+cnn_extractor.base_model.layer2.0.bn3.weight: torch.Size([512]), requires_grad=True
+cnn_extractor.base_model.layer2.0.bn3.bias: torch.Size([512]), requires_grad=True
+cnn_extractor.base_model.layer2.0.downsample.0.weight: torch.Size([512, 256, 1, 1]), requires_grad=True
+cnn_extractor.base_model.layer2.0.downsample.1.weight: torch.Size([512]), requires_grad=True
+cnn_extractor.base_model.layer2.0.downsample.1.bias: torch.Size([512]), requires_grad=True
+cnn_extractor.base_model.layer2.1.conv1.weight: torch.Size([128, 512, 1, 1]), requires_grad=True
+cnn_extractor.base_model.layer2.1.bn1.weight: torch.Size([128]), requires_grad=True
+cnn_extractor.base_model.layer2.1.bn1.bias: torch.Size([128]), requires_grad=True
+cnn_extractor.base_model.layer2.1.conv2.weight: torch.Size([128, 128, 3, 3]), requires_grad=True
+cnn_extractor.base_model.layer2.1.bn2.weight: torch.Size([128]), requires_grad=True
+cnn_extractor.base_model.layer2.1.bn2.bias: torch.Size([128]), requires_grad=True
+cnn_extractor.base_model.layer2.1.conv3.weight: torch.Size([512, 128, 1, 1]), requires_grad=True
+cnn_extractor.base_model.layer2.1.bn3.weight: torch.Size([512]), requires_grad=True
+cnn_extractor.base_model.layer2.1.bn3.bias: torch.Size([512]), requires_grad=True
+cnn_extractor.base_model.layer2.2.conv1.weight: torch.Size([128, 512, 1, 1]), requires_grad=True
+cnn_extractor.base_model.layer2.2.bn1.weight: torch.Size([128]), requires_grad=True
+cnn_extractor.base_model.layer2.2.bn1.bias: torch.Size([128]), requires_grad=True
+cnn_extractor.base_model.layer2.2.conv2.weight: torch.Size([128, 128, 3, 3]), requires_grad=True
+cnn_extractor.base_model.layer2.2.bn2.weight: torch.Size([128]), requires_grad=True
+cnn_extractor.base_model.layer2.2.bn2.bias: torch.Size([128]), requires_grad=True
+cnn_extractor.base_model.layer2.2.conv3.weight: torch.Size([512, 128, 1, 1]), requires_grad=True
+cnn_extractor.base_model.layer2.2.bn3.weight: torch.Size([512]), requires_grad=True
+cnn_extractor.base_model.layer2.2.bn3.bias: torch.Size([512]), requires_grad=True
+cnn_extractor.base_model.layer2.3.conv1.weight: torch.Size([128, 512, 1, 1]), requires_grad=True
+cnn_extractor.base_model.layer2.3.bn1.weight: torch.Size([128]), requires_grad=True
+cnn_extractor.base_model.layer2.3.bn1.bias: torch.Size([128]), requires_grad=True
+cnn_extractor.base_model.layer2.3.conv2.weight: torch.Size([128, 128, 3, 3]), requires_grad=True
+cnn_extractor.base_model.layer2.3.bn2.weight: torch.Size([128]), requires_grad=True
+cnn_extractor.base_model.layer2.3.bn2.bias: torch.Size([128]), requires_grad=True
+cnn_extractor.base_model.layer2.3.conv3.weight: torch.Size([512, 128, 1, 1]), requires_grad=True
+cnn_extractor.base_model.layer2.3.bn3.weight: torch.Size([512]), requires_grad=True
+cnn_extractor.base_model.layer2.3.bn3.bias: torch.Size([512]), requires_grad=True
+cnn_extractor.base_model.layer3.0.conv1.weight: torch.Size([256, 512, 1, 1]), requires_grad=True
+cnn_extractor.base_model.layer3.0.bn1.weight: torch.Size([256]), requires_grad=True
+cnn_extractor.base_model.layer3.0.bn1.bias: torch.Size([256]), requires_grad=True
+cnn_extractor.base_model.layer3.0.conv2.weight: torch.Size([256, 256, 3, 3]), requires_grad=True
+cnn_extractor.base_model.layer3.0.bn2.weight: torch.Size([256]), requires_grad=True
+cnn_extractor.base_model.layer3.0.bn2.bias: torch.Size([256]), requires_grad=True
+cnn_extractor.base_model.layer3.0.conv3.weight: torch.Size([1024, 256, 1, 1]), requires_grad=True
+cnn_extractor.base_model.layer3.0.bn3.weight: torch.Size([1024]), requires_grad=True
+cnn_extractor.base_model.layer3.0.bn3.bias: torch.Size([1024]), requires_grad=True
+cnn_extractor.base_model.layer3.0.downsample.0.weight: torch.Size([1024, 512, 1, 1]), requires_grad=True
+cnn_extractor.base_model.layer3.0.downsample.1.weight: torch.Size([1024]), requires_grad=True
+cnn_extractor.base_model.layer3.0.downsample.1.bias: torch.Size([1024]), requires_grad=True
+cnn_extractor.base_model.layer3.1.conv1.weight: torch.Size([256, 1024, 1, 1]), requires_grad=True
+cnn_extractor.base_model.layer3.1.bn1.weight: torch.Size([256]), requires_grad=True
+cnn_extractor.base_model.layer3.1.bn1.bias: torch.Size([256]), requires_grad=True
+cnn_extractor.base_model.layer3.1.conv2.weight: torch.Size([256, 256, 3, 3]), requires_grad=True
+cnn_extractor.base_model.layer3.1.bn2.weight: torch.Size([256]), requires_grad=True
+cnn_extractor.base_model.layer3.1.bn2.bias: torch.Size([256]), requires_grad=True
+cnn_extractor.base_model.layer3.1.conv3.weight: torch.Size([1024, 256, 1, 1]), requires_grad=True
+cnn_extractor.base_model.layer3.1.bn3.weight: torch.Size([1024]), requires_grad=True
+cnn_extractor.base_model.layer3.1.bn3.bias: torch.Size([1024]), requires_grad=True
+cnn_extractor.base_model.layer3.2.conv1.weight: torch.Size([256, 1024, 1, 1]), requires_grad=True
+cnn_extractor.base_model.layer3.2.bn1.weight: torch.Size([256]), requires_grad=True
+cnn_extractor.base_model.layer3.2.bn1.bias: torch.Size([256]), requires_grad=True
+cnn_extractor.base_model.layer3.2.conv2.weight: torch.Size([256, 256, 3, 3]), requires_grad=True
+cnn_extractor.base_model.layer3.2.bn2.weight: torch.Size([256]), requires_grad=True
+cnn_extractor.base_model.layer3.2.bn2.bias: torch.Size([256]), requires_grad=True
+cnn_extractor.base_model.layer3.2.conv3.weight: torch.Size([1024, 256, 1, 1]), requires_grad=True
+cnn_extractor.base_model.layer3.2.bn3.weight: torch.Size([1024]), requires_grad=True
+cnn_extractor.base_model.layer3.2.bn3.bias: torch.Size([1024]), requires_grad=True
+cnn_extractor.base_model.layer3.3.conv1.weight: torch.Size([256, 1024, 1, 1]), requires_grad=True
+cnn_extractor.base_model.layer3.3.bn1.weight: torch.Size([256]), requires_grad=True
+cnn_extractor.base_model.layer3.3.bn1.bias: torch.Size([256]), requires_grad=True
+cnn_extractor.base_model.layer3.3.conv2.weight: torch.Size([256, 256, 3, 3]), requires_grad=True
+cnn_extractor.base_model.layer3.3.bn2.weight: torch.Size([256]), requires_grad=True
+cnn_extractor.base_model.layer3.3.bn2.bias: torch.Size([256]), requires_grad=True
+cnn_extractor.base_model.layer3.3.conv3.weight: torch.Size([1024, 256, 1, 1]), requires_grad=True
+cnn_extractor.base_model.layer3.3.bn3.weight: torch.Size([1024]), requires_grad=True
+cnn_extractor.base_model.layer3.3.bn3.bias: torch.Size([1024]), requires_grad=True
+cnn_extractor.base_model.layer3.4.conv1.weight: torch.Size([256, 1024, 1, 1]), requires_grad=True
+cnn_extractor.base_model.layer3.4.bn1.weight: torch.Size([256]), requires_grad=True
+cnn_extractor.base_model.layer3.4.bn1.bias: torch.Size([256]), requires_grad=True
+cnn_extractor.base_model.layer3.4.conv2.weight: torch.Size([256, 256, 3, 3]), requires_grad=True
+cnn_extractor.base_model.layer3.4.bn2.weight: torch.Size([256]), requires_grad=True
+cnn_extractor.base_model.layer3.4.bn2.bias: torch.Size([256]), requires_grad=True
+cnn_extractor.base_model.layer3.4.conv3.weight: torch.Size([1024, 256, 1, 1]), requires_grad=True
+cnn_extractor.base_model.layer3.4.bn3.weight: torch.Size([1024]), requires_grad=True
+cnn_extractor.base_model.layer3.4.bn3.bias: torch.Size([1024]), requires_grad=True
+cnn_extractor.base_model.layer3.5.conv1.weight: torch.Size([256, 1024, 1, 1]), requires_grad=True
+cnn_extractor.base_model.layer3.5.bn1.weight: torch.Size([256]), requires_grad=True
+cnn_extractor.base_model.layer3.5.bn1.bias: torch.Size([256]), requires_grad=True
+cnn_extractor.base_model.layer3.5.conv2.weight: torch.Size([256, 256, 3, 3]), requires_grad=True
+cnn_extractor.base_model.layer3.5.bn2.weight: torch.Size([256]), requires_grad=True
+cnn_extractor.base_model.layer3.5.bn2.bias: torch.Size([256]), requires_grad=True
+cnn_extractor.base_model.layer3.5.conv3.weight: torch.Size([1024, 256, 1, 1]), requires_grad=True
+cnn_extractor.base_model.layer3.5.bn3.weight: torch.Size([1024]), requires_grad=True
+cnn_extractor.base_model.layer3.5.bn3.bias: torch.Size([1024]), requires_grad=True
+cnn_extractor.base_model.layer4.0.conv1.weight: torch.Size([512, 1024, 1, 1]), requires_grad=True
+cnn_extractor.base_model.layer4.0.bn1.weight: torch.Size([512]), requires_grad=True
+cnn_extractor.base_model.layer4.0.bn1.bias: torch.Size([512]), requires_grad=True
+cnn_extractor.base_model.layer4.0.conv2.weight: torch.Size([512, 512, 3, 3]), requires_grad=True
+cnn_extractor.base_model.layer4.0.bn2.weight: torch.Size([512]), requires_grad=True
+cnn_extractor.base_model.layer4.0.bn2.bias: torch.Size([512]), requires_grad=True
+cnn_extractor.base_model.layer4.0.conv3.weight: torch.Size([2048, 512, 1, 1]), requires_grad=True
+cnn_extractor.base_model.layer4.0.bn3.weight: torch.Size([2048]), requires_grad=True
+cnn_extractor.base_model.layer4.0.bn3.bias: torch.Size([2048]), requires_grad=True
+cnn_extractor.base_model.layer4.0.downsample.0.weight: torch.Size([2048, 1024, 1, 1]), requires_grad=True
+cnn_extractor.base_model.layer4.0.downsample.1.weight: torch.Size([2048]), requires_grad=True
+cnn_extractor.base_model.layer4.0.downsample.1.bias: torch.Size([2048]), requires_grad=True
+cnn_extractor.base_model.layer4.1.conv1.weight: torch.Size([512, 2048, 1, 1]), requires_grad=True
+cnn_extractor.base_model.layer4.1.bn1.weight: torch.Size([512]), requires_grad=True
+cnn_extractor.base_model.layer4.1.bn1.bias: torch.Size([512]), requires_grad=True
+cnn_extractor.base_model.layer4.1.conv2.weight: torch.Size([512, 512, 3, 3]), requires_grad=True
+cnn_extractor.base_model.layer4.1.bn2.weight: torch.Size([512]), requires_grad=True
+cnn_extractor.base_model.layer4.1.bn2.bias: torch.Size([512]), requires_grad=True
+cnn_extractor.base_model.layer4.1.conv3.weight: torch.Size([2048, 512, 1, 1]), requires_grad=True
+cnn_extractor.base_model.layer4.1.bn3.weight: torch.Size([2048]), requires_grad=True
+cnn_extractor.base_model.layer4.1.bn3.bias: torch.Size([2048]), requires_grad=True
+cnn_extractor.base_model.layer4.2.conv1.weight: torch.Size([512, 2048, 1, 1]), requires_grad=True
+cnn_extractor.base_model.layer4.2.bn1.weight: torch.Size([512]), requires_grad=True
+cnn_extractor.base_model.layer4.2.bn1.bias: torch.Size([512]), requires_grad=True
+cnn_extractor.base_model.layer4.2.conv2.weight: torch.Size([512, 512, 3, 3]), requires_grad=True
+cnn_extractor.base_model.layer4.2.bn2.weight: torch.Size([512]), requires_grad=True
+cnn_extractor.base_model.layer4.2.bn2.bias: torch.Size([512]), requires_grad=True
+cnn_extractor.base_model.layer4.2.conv3.weight: torch.Size([2048, 512, 1, 1]), requires_grad=True
+cnn_extractor.base_model.layer4.2.bn3.weight: torch.Size([2048]), requires_grad=True
+cnn_extractor.base_model.layer4.2.bn3.bias: torch.Size([2048]), requires_grad=True
+fusion_layer.0.weight: torch.Size([512, 2176]), requires_grad=True
+fusion_layer.0.bias: torch.Size([512]), requires_grad=True
+fusion_layer.1.weight: torch.Size([512]), requires_grad=True
+fusion_layer.1.bias: torch.Size([512]), requires_grad=True
+classifier.weight: torch.Size([7, 512]), requires_grad=True
+classifier.bias: torch.Size([7]), requires_grad=True
+
+DEBUG: Total parameters: 24,620,999
+
+Starting fusion model training for 50 epochs...
+Traceback (most recent call last):
+  File "D:\github\tree-species-classification\src\Classification_methods\Indirect_Methods\Multi-view_CNN_pretrained_fine_tuning\Data_fusion.py", line 676, in <module>
+    fusion_model, history = train_fusion_model(
+                            ^^^^^^^^^^^^^^^^^^^
+  File "D:\github\tree-species-classification\src\Classification_methods\Indirect_Methods\Multi-view_CNN_pretrained_fine_tuning\Data_fusion.py", line 310, in train_fusion_model
+    for views, labels, _ in train_pbar:
+                            ^^^^^^^^^^
+  File "D:\github\tree-species-classification\.venv\Lib\site-packages\tqdm\std.py", line 1181, in __iter__
+    for obj in iterable:
+               ^^^^^^^^
+  File "D:\github\tree-species-classification\.venv\Lib\site-packages\torch\utils\data\dataloader.py", line 493, in __iter__
+    return self._get_iterator()
+           ^^^^^^^^^^^^^^^^^^^^
+  File "D:\github\tree-species-classification\.venv\Lib\site-packages\torch\utils\data\dataloader.py", line 424, in _get_iterator
+    return _MultiProcessingDataLoaderIter(self)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\github\tree-species-classification\.venv\Lib\site-packages\torch\utils\data\dataloader.py", line 1171, in __init__
+    w.start()
+  File "C:\Users\aitlh\AppData\Local\Programs\Python\Python312\Lib\multiprocessing\process.py", line 121, in start
+    self._popen = self._Popen(self)
+                  ^^^^^^^^^^^^^^^^^
+  File "C:\Users\aitlh\AppData\Local\Programs\Python\Python312\Lib\multiprocessing\context.py", line 224, in _Popen
+    return _default_context.get_context().Process._Popen(process_obj)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\aitlh\AppData\Local\Programs\Python\Python312\Lib\multiprocessing\context.py", line 337, in _Popen
+    return Popen(process_obj)
+           ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\aitlh\AppData\Local\Programs\Python\Python312\Lib\multiprocessing\popen_spawn_win32.py", line 95, in __init__
+    reduction.dump(process_obj, to_child)
+  File "C:\Users\aitlh\AppData\Local\Programs\Python\Python312\Lib\multiprocessing\reduction.py", line 60, in dump
+    ForkingPickler(file, protocol).dump(obj)
+TypeError: cannot pickle 'cv2.SIFT' object
+
+Process finished with exit code 1
