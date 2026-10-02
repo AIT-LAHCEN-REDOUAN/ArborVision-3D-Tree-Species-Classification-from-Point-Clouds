@@ -1,154 +1,60 @@
-# Tree Species Classification
+# Tree Species Classification from 3D Point Clouds
 
-This repository contains code for classifying tree species from 3D point cloud data using various approaches. The implementation is optimized for an Acer Nitro 5 laptop with R9 5900HX CPU, RTX 3070 GPU, and 32GB RAM.
+## Project Overview
 
-## Project Structure
+This project classifies tree species from 3D point-cloud data by transforming each tree into a set of 2D orthographic views and learning from those views with deep-learning models.
 
-```
-tree-species-classification/
-├── data/                      # Data directory
-│   ├── raw/                   # Raw point cloud data
-│   └── processed/             # Processed data
-│       ├── train/             # Training data split by species
-│       ├── test/              # Test data split by species
-│       └── multiview_images/  # Generated multi-view images
-├── models/                    # Saved models
-├── results/                   # Results and visualizations
-├── src/                       # Source code
-│   └── Classification_methods/
-│       └── Indirect_Methods/
-│           └── Multi-view_Classical_Descriptors_ML/
-│               ├── multi_view_generator.py        # Multi-view image generation
-│               └── multi_view_classical_ml_pipeline.py  # ML pipeline
-└── README.md                  # This file
-```
+The implementation works with 691 point-cloud samples across seven tree species. It normalizes each point cloud, renders multiple grayscale projections from different angles, and uses multi-view ResNet models to aggregate visual information into a final species prediction. An experimental feature-fusion path combines CNN representations with Dense SIFT descriptors.
 
-## Data Preparation
+The supported species are Buche, Douglasie, Eiche, Esche, Fichte, Kiefer, and Roteiche.
 
-Before running the classification pipeline, you need to prepare the data by splitting it into train and test sets:
+## Architecture
 
-```bash
-python src/data_splitting.py
+```mermaid
+flowchart LR
+    A[3D tree point clouds\nXYZ, PTS, or TXT] --> B[Center and normalize\nto unit sphere]
+    B --> C[Orthographic projection renderer\n3 elevations x 12 azimuths]
+    C --> D[36 grayscale views\n224 x 224]
+    D --> E[Pretrained ResNet backbone\nResNet-18 or ResNet-50]
+    E --> F[Multi-view pooling\nmax, average, or attention]
+    D --> G[Dense SIFT descriptors]
+    F --> H[Optional CNN and SIFT feature fusion]
+    G --> H
+    F --> I[Seven-class classifier]
+    H --> I
+    I --> J[Predicted tree species]
 ```
 
-This script will:
-1. Discover all point cloud files (`.xyz`, `.pts`, `.txt`) in the source directory
-2. Split the data into train and test sets based on the provided test.csv file
-3. Copy files to the appropriate directories
-4. Generate metadata about the dataset
+The project treats each tree as a 3D object rather than a single image. Multi-view rendering preserves information from different viewpoints, while view pooling or feature fusion combines those perspectives before classification.
 
-## Multi-view Classification Pipeline
+## Technology Stack
 
-The multi-view classification approach consists of two main steps:
+| Project Component | Technologies | Purpose |
+| --- | --- | --- |
+| Point-cloud processing | Python, NumPy, SciPy | Read XYZ, PTS, and TXT point clouds, center them, scale them to a unit sphere, and create normalized 3D inputs. |
+| Multi-view rendering | NumPy, SciPy, Pillow | Produce 36 grayscale orthographic projections per tree from three elevation angles and twelve azimuth angles. |
+| Deep learning | PyTorch, Torchvision, ResNet-18, ResNet-50 | Support multi-view classifiers with backbones adapted for single-channel rendered views, including ImageNet initialization in the ResNet-50 fine-tuning path. |
+| Multi-view learning | Max pooling, average pooling, attention pooling | Aggregate feature representations across all rendered views of the same tree. |
+| Feature fusion | OpenCV, Dense SIFT | Extract classical descriptors from rendered views and combine them with CNN features in the experimental fusion model. |
+| Evaluation and analysis | Scikit-learn, Pandas, Matplotlib, Seaborn | Create dataset summaries, calculate classification metrics, and visualize training and evaluation outputs. |
+| Compute acceleration | CUDA-enabled PyTorch, CuPy | Use GPU acceleration when available, with CPU-compatible processing paths. |
 
-1. Generate multi-view images from 3D point clouds
-2. Extract classical image descriptors and train ML models
+## Data Flow
 
-### 1. Multi-view Image Generation
+1. Tree point-cloud files in XYZ, PTS, or TXT format are loaded by species.
+2. Each point cloud is centered and scaled to a unit sphere to normalize its spatial representation.
+3. The normalized cloud is rotated across three elevation angles and twelve azimuth angles.
+4. Thirty-six 224 x 224 grayscale orthographic projections are created for every tree.
+5. A ResNet-18 or ResNet-50 backbone extracts features from every rendered view.
+6. Max, average, or attention pooling combines the multi-view CNN features into a single tree-level representation.
+7. The experimental fusion route extracts Dense SIFT descriptors and combines them with CNN features before classification.
+8. The final classifier predicts one of the seven supported tree species.
 
-The `multi_view_generator.py` script converts 3D point cloud data into 2D multi-view projections:
+## Implementation Scope
 
-```bash
-python src/Classification_methods/Indirect_Methods/Multi-view_Classical_Descriptors_ML/multi_view_generator.py --num_views 8 --resolution 224 --split train
-```
-
-Options:
-- `--num_views`: Number of views to generate per point cloud (default: 8)
-- `--resolution`: Resolution of generated images (default: 224)
-- `--split`: Which data split to process ('train', 'test', or 'both') (default: 'both')
-
-This will generate multi-view images for each point cloud and save them in the `data/processed/multiview_images/{split}/{species}/` directories.
-
-### 2. Classical ML Pipeline
-
-The `multi_view_classical_ml_pipeline.py` script extracts features from the multi-view images and trains classical ML models:
-
-```bash
-python src/Classification_methods/Indirect_Methods/Multi-view_Classical_Descriptors_ML/multi_view_classical_ml_pipeline.py --features hog lbp sift color --combination mean
-```
-
-Options:
-- `--features`: Feature types to extract (hog, lbp, sift, color) (default: all)
-- `--combination`: Method to combine multi-view features ('mean', 'max', 'concat') (default: 'mean')
-
-The script will:
-1. Load the multi-view images
-2. Extract the specified features from each image
-3. Combine features from multiple views of the same tree
-4. Train and evaluate multiple ML models (RandomForest, SVM, GradientBoosting)
-5. Save the trained models and evaluation results
-
-## Expected Data Structure
-
-The input point cloud data should be organized by species:
-
-```
-dataverse_files/
-├── Buche/
-│   ├── tree1.xyz
-│   ├── tree2.pts
-│   └── ...
-├── Douglasie/
-│   ├── tree1.xyz
-│   └── ...
-└── ...
-```
-
-After running the data splitting script, the processed data will be organized as:
-
-```
-data/processed/
-├── train/
-│   ├── Buche/
-│   │   ├── tree1.xyz
-│   │   └── ...
-│   ├── Douglasie/
-│   │   ├── tree1.xyz
-│   │   └── ...
-│   └── ...
-└── test/
-    ├── Buche/
-    │   ├── tree2.pts
-    │   └── ...
-    └── ...
-```
-
-After running the multi-view generator, the images will be organized as:
-
-```
-data/processed/multiview_images/
-├── train/
-│   ├── Buche/
-│   │   ├── tree1_view0.png
-│   │   ├── tree1_view1.png
-│   │   └── ...
-│   └── ...
-└── test/
-    ├── Buche/
-    │   ├── tree2_view0.png
-    │   └── ...
-    └── ...
-```
-
-## Requirements
-
-See `requirements.txt` for the full list of dependencies. The main requirements are:
-
-- Python 3.8+
-- NumPy
-- Pandas
-- Scikit-learn
-- OpenCV
-- Open3D
-- PyTorch (for GPU acceleration)
-- CuPy (for CUDA acceleration)
-- PyOpenCL (optional, for OpenCL acceleration)
-
-## Hardware Optimization
-
-The code is optimized for an Acer Nitro 5 laptop with:
-- AMD Ryzen 9 5900HX CPU
-- NVIDIA RTX 3070 GPU
-- 32GB RAM
-
-Hardware acceleration is used when available, with fallbacks to CPU processing when necessary.
+- 691 point-cloud samples are used in the current training setup.
+- The recorded run uses a 553-sample training split and a 138-sample validation split.
+- ResNet-18 and ResNet-50 implementations are available for multi-view classification.
+- The ResNet-50 fine-tuning route supports ImageNet initialization and attention-based view pooling.
+- The feature-fusion route combines 2,048-dimensional CNN features with 128-dimensional Dense SIFT descriptors.
+- Dataset analysis, species-specific visualization, data splitting, model training, and evaluation utilities are included.
